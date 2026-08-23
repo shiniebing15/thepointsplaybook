@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <!-- Automatic Desktop Mode on Mobile Browsers -->
+  <meta id="desktop-viewport" name="viewport" content="width=1200, initial-scale=0.35, minimum-scale=0.1, maximum-scale=3.0, user-scalable=yes">
+  <script>
+    (function () {
+      function forceDesktopViewport() {
+        var DESKTOP_WIDTH = 1200;
+        var screenW = window.innerWidth || (window.screen ? (window.screen.width < window.screen.height && Math.abs(window.orientation || 0) === 0 ? window.screen.width : window.screen.width) : DESKTOP_WIDTH);
+        var scale = screenW / DESKTOP_WIDTH;
+        if (scale > 1) scale = 1;
+        if (scale < 0.1) scale = 0.1;
+        var meta = document.getElementById('desktop-viewport') || document.querySelector('meta[name="viewport"]');
+        if (meta) {
+          meta.setAttribute('content', 'width=' + DESKTOP_WIDTH + ', initial-scale=' + scale.toFixed(3) + ', minimum-scale=0.1, maximum-scale=3.0, user-scalable=yes');
+        }
+      }
+      forceDesktopViewport();
+      window.addEventListener('resize', forceDesktopViewport);
+      window.addEventListener('orientationchange', function () {
+        setTimeout(forceDesktopViewport, 150);
+      });
+    })();
+  </script>
+  <title>THE POINTS PLAYBOOK • IIChE AU-SC 2026–27</title>
+  <meta name="description" content="Your guide to earning, engaging & climbing the ranks at IIChE AU-SC 2026–27. The official modern student chapter points playbook.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-midnight">
+  <!-- Ambient Chemical Engineering Canvas Background -->
+  <canvas id="chem-bg-canvas" aria-hidden="true"></canvas>
+  <div class="grid-overlay" aria-hidden="true"></div>
+  <div class="scanline-fx" aria-hidden="true"></div>
+
+  <!-- Top Navigation / Controls Bar -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="iiche-brand-badge">
+        <div class="brand-logo-icon">
+          <img src="assets/iiche-logo.png" alt="IIChE AU-SC Official Logo" class="brand-logo-img" />
+        </div>
+        <div class="brand-text-block">
+          <span class="brand-title">IIChE AU-SC</span>
+          <span class="brand-sub">ANNA UNIVERSITY • 2026–27</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Navigation Links -->
+    <nav class="book-nav" aria-label="Booklet Navigation">
+      <button class="nav-tab active" data-target="page-1" id="nav-p1">01 • Cover</button>
+      <button class="nav-tab" data-target="page-2" id="nav-p2">02 • Point System</button>
+      <button class="nav-tab" data-target="page-3" id="nav-p3">03 • Domain Playbook</button>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-right">
+      <button id="calc-toggle-btn" class="action-btn calc-btn" title="Open Points Calculator">
+        <span class="btn-icon">⚡</span>
+        <span class="btn-text">Point Simulator</span>
+        <span class="calc-badge" id="calc-selected-count">0</span>
+      </button>
+
+      <button id="sound-toggle-btn" class="icon-btn" title="Toggle Sound FX" aria-label="Toggle Sound">
+        <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07" class="sound-wave-1"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14" class="sound-wave-2"></path>
+        </svg>
+      </button>
+
+      <button id="theme-toggle-btn" class="icon-btn" title="Toggle Theme" aria-label="Toggle Dark/Light Mode">
+        <svg class="icon theme-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+      </button>
+
+      <button id="print-btn" class="icon-btn" title="Print / PDF Export" aria-label="Print Document">
+        <svg class="icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Booklet Scroll Container -->
+  <main class="booklet-main">
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 1 — COVER                                                           -->
+    <!-- ========================================================================= -->
+    <section class="booklet-page page-cover" id="page-1" aria-labelledby="cover-title">
+      <div class="page-ambient-grid"></div>
+      
+      <!-- Tech Process Tag Coordinates -->
+      <div class="tech-tag tag-tl">DOC: AGY-IIChE-2026 // REV-04</div>
+      <div class="tech-tag tag-tr">SYS_STATUS: ACTIVE • AUTH_VERIFIED</div>
+      <div class="tech-coordinate tag-bl">COORD: 13.0118° N, 80.2366° E (AU)</div>
+      <div class="tech-coordinate tag-br">PLAYBOOK SPEC • 2026–27</div>
+
+      <div class="cover-content-wrapper">
+        <!-- Official IIChE AU-SC Emblem -->
+        <div class="cover-official-emblem">
+          <div class="emblem-halo"></div>
+          <img src="assets/iiche-logo.png" alt="IIChE AU-SC Official Logo" class="cover-logo-img" />
+        </div>
+
+        <!-- Official Badge Top -->
+        <div class="cover-badge-pill">
+          <span class="pulsing-node"></span>
+          <span class="pill-org">INDIAN INSTITUTE OF CHEMICAL ENGINEERS</span>
+          <span class="pill-divider">/</span>
+          <span class="pill-au">AU STUDENT CHAPTER</span>
+        </div>
+
+        <!-- Chemical Flow Schematic Accent Line -->
+        <div class="chemical-process-diagram" aria-hidden="true">
+          <svg viewBox="0 0 600 60" class="process-svg">
+            <line x1="0" y1="30" x2="230" y2="30" class="flow-line" />
+            <circle cx="230" cy="30" r="5" class="flow-node" />
+            <polygon points="250,20 270,30 250,40" class="flow-valve" />
+            <line x1="270" y1="30" x2="330" y2="30" class="flow-line" />
+            <rect x="330" y="18" width="40" height="24" rx="4" class="reactor-box" />
+            <text x="350" y="34" class="reactor-label">REACT</text>
+            <line x1="370" y1="30" x2="600" y2="30" class="flow-line" />
+            <circle cx="500" cy="30" r="4" class="flow-node" />
+          </svg>
+        </div>
+
+        <!-- Main Title Group -->
+        <div class="cover-hero">
+          <div class="cover-kicker">THE OFFICIAL STUDENT CHAPTER DIRECTIVE</div>
+          <h1 class="cover-title" id="cover-title">
+            <span class="title-word title-the">THE</span>
+            <span class="title-word title-points">POINTS</span>
+            <span class="title-word title-playbook">PLAYBOOK</span>
+          </h1>
+          <p class="cover-subtitle">Your guide to earning, engaging &amp; climbing the ranks</p>
+        </div>
+
+        <!-- Interactive Quick Entry Cards -->
+        <div class="cover-features-row">
+          <div class="cover-stat-card">
+            <span class="stat-num">10</span>
+            <span class="stat-label">Action Domains</span>
+          </div>
+          <div class="cover-stat-card">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Earning Opportunities</span>
+          </div>
+          <div class="cover-stat-card">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Transparent Merit</span>
+          </div>
+        </div>
+
+        <!-- Cover Action Button -->
+        <div class="cover-action-wrap">
+          <button class="primary-cta-btn" id="start-reading-btn">
+            <span>ENTER THE PLAYBOOK</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Cover Footer -->
+        <footer class="cover-footer">
+          <div class="footer-line"></div>
+          <div class="footer-text-block">
+            <span class="footer-inst">IIChE AU-SC</span>
+            <span class="footer-bullet">•</span>
+            <span class="footer-year">2026–27</span>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 2 — INTRODUCTION                                                    -->
+    <!-- ========================================================================= -->
+    <section class="booklet-page page-intro" id="page-2" aria-labelledby="intro-heading">
+      <div class="page-header-decor">
+        <span class="page-folio">PAGE 02 // MANIFESTO</span>
+        <span class="page-meta">IIChE AU-SC 2026–27</span>
+      </div>
+
+      <div class="intro-container">
+        <!-- Section Header -->
+        <header class="section-hero">
+          <div class="section-tag-badge">SYSTEM OVERVIEW</div>
+          <h2 class="section-title" id="intro-heading">IIChE POINT SYSTEM</h2>
+          <h3 class="section-subheading">MORE THAN JUST POINTS.</h3>
+        </header>
+
+        <!-- Editorial Body Copy -->
+        <div class="intro-copy-card">
+          <div class="intro-lead-bracket" aria-hidden="true"></div>
+          <p class="intro-paragraph">
+            The IIChE Point System recognises every contribution that keeps the club moving.
+          </p>
+          <p class="intro-paragraph">
+            From participating and winning to creating, organising, designing, leading, and working behind the scenes — every effort counts.
+          </p>
+          <p class="intro-paragraph">
+            Points are based on the effort, responsibility, and impact of each contribution, with bonus points for achievements and bigger responsibilities.
+          </p>
+          <p class="intro-paragraph highlight-box">
+            Your points add up to your overall score, with separate leaderboards for each year.
+          </p>
+        </div>
+
+        <!-- The 4-Stage Playbook Game Progression Callouts -->
+        <div class="progression-framework">
+          <div class="framework-header">
+            <span class="framework-kicker">THE PROGRESSION ENGINE</span>
+            <span class="framework-status">CYCLE 2026–27</span>
+          </div>
+
+          <div class="progression-flow-grid">
+            <!-- Step 1 -->
+            <div class="flow-card flow-step-1">
+              <div class="step-num-pill">STAGE 01</div>
+              <div class="step-icon">🎯</div>
+              <h4 class="step-name">PARTICIPATE</h4>
+              <p class="step-desc">Show up at quizzes, workshops, seminars, and club series. Your presence sets the reaction in motion.</p>
+              <div class="step-arrow-connector" aria-hidden="true">→</div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="flow-card flow-step-2">
+              <div class="step-num-pill">STAGE 02</div>
+              <div class="step-icon">⚡</div>
+              <h4 class="step-name">CONTRIBUTE</h4>
+              <p class="step-desc">Produce content, design visuals, manage logistics, host sessions, or secure high-impact sponsorships.</p>
+              <div class="step-arrow-connector" aria-hidden="true">→</div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="flow-card flow-step-3">
+              <div class="step-num-pill">STAGE 03</div>
+              <div class="step-icon">💎</div>
+              <h4 class="step-name">EARN</h4>
+              <p class="step-desc">Stack base points and unlock bonus multipliers for high responsibility, podium wins, and execution.</p>
+              <div class="step-arrow-connector" aria-hidden="true">→</div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="flow-card flow-step-4">
+              <div class="step-num-pill">STAGE 04</div>
+              <div class="step-icon">👑</div>
+              <h4 class="step-name">GET RECOGNISED</h4>
+              <p class="step-desc">Top your year-wise leaderboard and win exciting prizes at the end of the year.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Chemical Engineering Leagues & Rank Progression Engine -->
+        <div class="leagues-roadmap-section" id="leagues-section">
+          <div class="roadmap-header">
+            <div>
+              <span class="framework-kicker">CHAPTER PRESTIGE LADDER</span>
+              <h3 class="roadmap-title">7 DYNAMIC LEAGUES &amp; PRIZE TIERS</h3>
+            </div>
+            <span class="framework-status">SCALE: 0 TO 1000+ PTS</span>
+          </div>
+          <p class="roadmap-sub">Every contribution propels you through higher kinetic energy states. Cross league thresholds to qualify for exclusive perks, certificates, and win exciting prizes at the end of the year!</p>
+
+          <div class="leagues-grid">
+            <!-- League 1 -->
+            <div class="league-tier-card tier-initiator" data-league="1">
+              <div class="tier-top">
+                <span class="tier-icon">🧪</span>
+                <span class="tier-pts-pill">0 – 50 PTS</span>
+              </div>
+              <div class="tier-badge-label">TIER 01 • SPARK</div>
+              <h4 class="tier-name">INITIATOR LEAGUE</h4>
+              <p class="tier-desc">Sparking the chapter reaction through first quiz entries and event attendance.</p>
+              <div class="tier-perk-box">
+                <span class="perk-label">LEAGUE REWARD:</span>
+                <span class="perk-text">Verified Chapter Contributor Status</span>
+              </div>
+            </div>
+
+            <!-- League 2 -->
+            <div class="league-tier-card tier-kinetic" data-league="2">
+              <div class="tier-top">
+                <span class="tier-icon">⚡</span>
+                <span class="tier-pts-pill">51 – 120 PTS</span>
+              </div>
+              <div class="tier-badge-label">TIER 02 • FLOW</div>
+              <h4 class="tier-name">KINETIC LEAGUE</h4>
+              <p class="tier-desc">Active contributor producing series content, stories, and workshop engagement.</p>
+              <div class="tier-perk-box">
+                <span class="perk-label">LEAGUE REWARD:</span>
+                <span class="perk-text">Event Entry Privileges</span>
+              </div>
+            </div>
+
+            <!-- League 3 -->
+            <div class="league-tier-card tier-equilibrium" data-league="3">
+              <div class="tier-top">
+                <span class="tier-icon">⚖️</span>
+                <span class="tier-pts-pill">121 – 220 PTS</span>
+              </div>
+              <div class="tier-badge-label">TIER 03 • CATALYST</div>
+              <h4 class="tier-name">EQUILIBRIUM LEAGUE</h4>
+              <p class="tier-desc">Podium finishes, logistics mastery, and high-impact editorial drafts.</p>
+              <div class="tier-perk-box">
+                <span class="perk-label">LEAGUE REWARD:</span>
+                <span class="perk-text">Media Spotlight</span>
+              </div>
+            </div>
+
+            <!-- League 4 -->
+            <div class="league-tier-card tier-distillation" data-league="4">
+              <div class="tier-top">
+                <span class="tier-icon">🌀</span>
+                <span class="tier-pts-pill">221 – 360 PTS</span>
+              </div>
+              <div class="tier-badge-label">TIER 04 • PURITY</div>
+              <h4 class="tier-name">DISTILLATION LEAGUE</h4>
+              <p class="tier-desc">High-purity coordination, event teasers, emcee hosting, and speaker leads.</p>
+              <div class="tier-perk-box">
+                <span class="perk-label">LEAGUE REWARD:</span>
+                <span class="perk-text">Priority Workshop Passes</span>
+              </div>
+            </div>
+
+            <!-- League 5 -->
+            <div class="league-tier-card tier-synthesis" data-league="5">
+              <div class="tier-top">
+                <span class="tier-icon">💎</span>
+                <span class="tier-pts-pill">361 – 520 PTS</span>
+              </div>
+              <div class="tier-badge-label">TIER 05 • REACTOR</div>
+              <h4 class="tier-name">SYNTHESIS LEAGUE</h4>
+              <p class="tier-desc">Flagship podcast episodes, securing confirmed guest speakers, and sponsorships.</p>
+              <div class="tier-perk-box">
+                <span class="perk-label">LEAGUE REWARD:</span>
+                <span class="perk-text">Official IIChE AU-SC Certificates &amp; Annual Award Contender</span>
+              </div>
+            </div>
+
+            <!-- League 6 -->
+            <div class="league-tier-card tier-quantum" data-league="6">
+              <div class="tier-top">
+                <span class="tier-icon">⚛️</span>
+                <span class="tier-pts-pill">521 – 750 PTS</span>
+              </div>
+              <div class="tier-badge-label">TIER 06 • VANGUARD</div>
+              <h4 class="tier-name">QUANTUM LEAGUE</h4>
+              <p class="tier-desc">End-to-end event leadership, strategic partnerships, and multi-campaign domination.</p>
+              <div class="tier-perk-box">
+                <span class="perk-label">LEAGUE REWARD:</span>
+                <span class="perk-text">Guaranteed Podium Contender &amp; Premium Category Prizes</span>
+              </div>
+            </div>
+
+            <!-- League 7 -->
+            <div class="league-tier-card tier-titan" data-league="7">
+              <div class="tier-top">
+                <span class="tier-icon">👑🏆</span>
+                <span class="tier-pts-pill titan-pill">751+ PTS</span>
+              </div>
+              <div class="tier-badge-label titan-label">TIER 07 • PINNACLE</div>
+              <h4 class="tier-name">GRANDMASTER TITAN</h4>
+              <p class="tier-desc">Legendary annual standing with pinnacle contributions across all domains.</p>
+              <div class="tier-perk-box titan-perk">
+                <span class="perk-label">GRAND PRIZE REWARD:</span>
+                <span class="perk-text">Annual Champion Award &amp; Win Exciting Grand Prizes at the End of the Year! 🎁✨</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bold Closing Statement Banner -->
+        <div class="intro-statement-banner">
+          <div class="banner-glow-line"></div>
+          <div class="statement-content">
+            <span class="statement-kicker">CHAPTER MANTRA</span>
+            <div class="statement-headline">
+              <span>PARTICIPATE.</span>
+              <span class="accent-glow">CONTRIBUTE.</span>
+              <span>EARN.</span>
+              <span class="accent-amber">GET RECOGNISED.</span>
+            </div>
+          </div>
+          <div class="banner-decor-nodes" aria-hidden="true">
+            <span>[KINETIC]</span>
+            <span>[CATALYST]</span>
+            <span>[EQUILIBRIUM]</span>
+          </div>
+        </div>
+
+        <!-- Quick Jump to Domains Button -->
+        <div class="intro-footer-nav">
+          <button class="secondary-jump-btn" id="jump-to-domains-btn">
+            <span>VIEW 10 ACTION DOMAINS &amp; POINT VALUES</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Page Footer -->
+        <footer class="editorial-page-footer">
+          <span>IIChE AU-SC • 2026–27</span>
+          <span class="center-tag">OFFICIAL POINT SYSTEM</span>
+          <span>PAGE 02</span>
+        </footer>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 3 — INTERACTIVE POINT SYSTEM                                        -->
+    <!-- ========================================================================= -->
+    <section class="booklet-page page-system" id="page-3" aria-labelledby="system-heading">
+      <div class="page-header-decor">
+        <span class="page-folio">PAGE 03 // DOMAIN PLAYBOOK</span>
+        <span class="page-meta">IIChE AU-SC 2026–27</span>
+      </div>
+
+      <div class="system-container">
+        <!-- Section Header -->
+        <header class="section-hero">
+          <div class="section-tag-badge">THE COMPLETE BREAKDOWN</div>
+          <h2 class="section-title" id="system-heading">THE POINT SYSTEM</h2>
+          <h3 class="section-subheading">PICK YOUR DOMAIN. MAKE YOUR MOVE.</h3>
+          <p class="section-instruction">
+            “Explore each domain to see how your contributions translate into points.”
+          </p>
+        </header>
+
+        <!-- Search & Control Toolbar -->
+        <div class="domain-toolbar">
+          <div class="search-box">
+            <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="task-search-input" placeholder="Search tasks (e.g. Reel, Quiz, Sponsor, Host, Bonus)..." aria-label="Search all tasks">
+            <button id="clear-search-btn" class="clear-search hidden" aria-label="Clear search">✕</button>
+          </div>
+
+          <div class="toolbar-actions">
+            <!-- Quick Filter Chips -->
+            <div class="filter-chips-wrap" role="group" aria-label="Filter domains">
+              <button class="filter-chip active" data-filter="all">All Domains (10)</button>
+              <button class="filter-chip" data-filter="events">Events &amp; Logistics</button>
+              <button class="filter-chip" data-filter="media">Media &amp; Podcast</button>
+              <button class="filter-chip" data-filter="editorial">Editorial &amp; PR</button>
+              <button class="filter-chip" data-filter="design">Design &amp; Visuals</button>
+              <button class="filter-chip" data-filter="quizzes">Quizzes &amp; Workshops</button>
+            </div>
+
+            <!-- Global Accordion Controls -->
+            <div class="expand-controls">
+              <button id="expand-all-btn" class="text-toggle-btn">Expand All</button>
+              <span class="divider">|</span>
+              <button id="collapse-all-btn" class="text-toggle-btn">Collapse All</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- DOMAINS ACCORDION CONTAINER -->
+        <div class="domains-list" id="domains-accordion-wrapper">
+
+          <!-- 01 — ONLINE SERIES & QUIZZES -->
+          <article class="domain-card" data-domain="1" data-category="quizzes">
+            <button class="domain-header" aria-expanded="false" aria-controls="domain-content-1" id="domain-header-1">
+              <div class="domain-header-left">
+                <div class="domain-num">01</div>
+                <div class="domain-meta-block">
+                  <h4 class="domain-title">ONLINE SERIES &amp; QUIZZES</h4>
+                  <p class="domain-teaser">“Participation • Competition • Recognition”</p>
+                </div>
+              </div>
+              <div class="domain-header-right">
+                <span class="domain-task-count">4 Tasks</span>
+                <span class="domain-max-badge">Up to 30 pts</span>
+                <span class="chevron-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="domain-body" id="domain-content-1" role="region" aria-labelledby="domain-header-1">
+              <div class="domain-body-inner">
+                <div class="domain-tasks-grid">
+                  <div class="task-row">
+                    <span class="task-title">Quiz Participation</span>
+                    <span class="task-points base-pts">10 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <div class="task-info">
+                      <span class="task-title">1st Place</span>
+                      <span class="crown-tag">CHAMPION</span>
+                    </div>
+                    <span class="task-points high-pts">+30 Points</span>
+                  </div>
+                  <div class="task-row highlight-bonus">
+                    <div class="task-info">
+                      <span class="task-title">2nd Place</span>
+                      <span class="bonus-tag">PODIUM BONUS</span>
+                    </div>
+                    <span class="task-points bonus-pts">+20 Points</span>
+                  </div>
+                  <div class="task-row highlight-bonus">
+                    <div class="task-info">
+                      <span class="task-title">3rd Place</span>
+                      <span class="bonus-tag">PODIUM BONUS</span>
+                    </div>
+                    <span class="task-points bonus-pts">+10 Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 — ONLINE SERIES PRODUCTION -->
+          <article class="domain-card" data-domain="2" data-category="media">
+            <button class="domain-header" aria-expanded="false" aria-controls="domain-content-2" id="domain-header-2">
+              <div class="domain-header-left">
+                <div class="domain-num">02</div>
+                <div class="domain-meta-block">
+                  <h4 class="domain-title">ONLINE SERIES PRODUCTION</h4>
+                  <p class="domain-teaser">“Content • Design • Question Curation”</p>
+                </div>
+              </div>
+              <div class="domain-header-right">
+                <span class="domain-task-count">3 Tasks</span>
+                <span class="domain-max-badge">Up to 30 pts</span>
+                <span class="chevron-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="domain-body" id="domain-content-2" role="region" aria-labelledby="domain-header-2">
+              <div class="domain-body-inner">
+                <div class="domain-tasks-grid">
+                  <div class="task-row">
+                    <span class="task-title">Content Production</span>
+                    <span class="task-points base-pts">20 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Design</span>
+                    <span class="task-points base-pts">20 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <div class="task-info">
+                      <span class="task-title">Quiz Question Preparation</span>
+                      <span class="technical-tag">TECHNICAL CURATION</span>
+                    </div>
+                    <span class="task-points high-pts">30 Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 — WORKSHOPS / LECTURES -->
+          <article class="domain-card" data-domain="3" data-category="quizzes">
+            <button class="domain-header" aria-expanded="false" aria-controls="domain-content-3" id="domain-header-3">
+              <div class="domain-header-left">
+                <div class="domain-num">03</div>
+                <div class="domain-meta-block">
+                  <h4 class="domain-title">WORKSHOPS / LECTURES</h4>
+                  <p class="domain-teaser">“Attendance • Active Engagement • Q&amp;A Insight”</p>
+                </div>
+              </div>
+              <div class="domain-header-right">
+                <span class="domain-task-count">3 Tasks</span>
+                <span class="domain-max-badge">Up to 20 pts</span>
+                <span class="chevron-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="domain-body" id="domain-content-3" role="region" aria-labelledby="domain-header-3">
+              <div class="domain-body-inner">
+                <div class="domain-tasks-grid">
+                  <div class="task-row">
+                    <span class="task-title">Attending</span>
+                    <span class="task-points base-pts">10 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Answering a Speaker’s Question</span>
+                    <span class="task-points base-pts">15 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Asking a Question During Q&amp;A</span>
+                    <span class="task-points high-pts">20 Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 04 — EVENT ORGANISATION -->
+          <article class="domain-card" data-domain="4" data-category="events">
+            <button class="domain-header" aria-expanded="false" aria-controls="domain-content-4" id="domain-header-4">
+              <div class="domain-header-left">
+                <div class="domain-num">04</div>
+                <div class="domain-meta-block">
+                  <h4 class="domain-title">EVENT ORGANISATION</h4>
+                  <p class="domain-teaser">“Coordination • Hosting • Ceremony &amp; Protocol”</p>
+                </div>
+              </div>
+              <div class="domain-header-right">
+                <span class="domain-task-count">4 Tasks</span>
+                <span class="domain-max-badge">Up to 20 pts</span>
+                <span class="chevron-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="domain-body" id="domain-content-4" role="region" aria-labelledby="domain-header-4">
+              <div class="domain-body-inner">
+                <div class="domain-tasks-grid">
+                  <div class="task-row">
+                    <span class="task-title">Decoration</span>
+                    <span class="task-points base-pts">15 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Emcee / Host</span>
+                    <span class="task-points high-pts">20 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Tamil Thaai Vaazhthu</span>
+                    <span class="task-points base-pts">10 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Vote of Thanks</span>
+                    <span class="task-points base-pts">10 Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 05 — LOGISTICS -->
+          <article class="domain-card" data-domain="5" data-category="events">
+            <button class="domain-header" aria-expanded="false" aria-controls="domain-content-5" id="domain-header-5">
+              <div class="domain-header-left">
+                <div class="domain-num">05</div>
+                <div class="domain-meta-block">
+                  <h4 class="domain-title">LOGISTICS</h4>
+                  <p class="domain-teaser">“Supplies • Catering • Major Purchases &amp; Materials”</p>
+                </div>
+              </div>
+              <div class="domain-header-right">
+                <span class="domain-task-count">6 Tasks</span>
+                <span class="domain-max-badge">Up to 30 pts</span>
+                <span class="chevron-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="domain-body" id="domain-content-5" role="region" aria-labelledby="domain-header-5">
+              <div class="domain-body-inner">
+                <div class="domain-tasks-grid">
+                  <div class="task-row">
+                    <span class="task-title">Basic Stationery / Small Supplies</span>
+                    <span class="task-points base-pts">10 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Refreshments / Snacks</span>
+                    <span class="task-points base-pts">20 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Badges / Certificates / Event Materials</span>
+                    <span class="task-points base-pts">25 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Mementos / Gifts / Prizes</span>
+                    <span class="task-points high-pts">30 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Invitations / Banners / Major Printing</span>
+                    <span class="task-points high-pts">30 Points</span>
+                  </div>
+                  <div class="task-row highlight-bonus">
+                    <div class="task-info">
+                      <span class="task-title">Multiple Purchases Bonus</span>
+                      <span class="bonus-tag">LOGISTICS BONUS</span>
+                    </div>
+                    <span class="task-points bonus-pts">+10 Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 06 — MARKETING & DIGITAL MEDIA -->
+          <article class="domain-card" data-domain="6" data-category="media">
+            <button class="domain-header" aria-expanded="false" aria-controls="domain-content-6" id="domain-header-6">
+              <div class="domain-header-left">
+                <div class="domain-num">06</div>
+                <div class="domain-meta-block">
+                  <h4 class="domain-title">MARKETING &amp; DIGITAL MEDIA</h4>
+                  <p class="domain-teaser">“Campaigns • Video Production • Reel Concepts &amp; Teasers”</p>
+                </div>
+              </div>
+              <div class="domain-header-right">
+                <span class="domain-task-count">6 Tasks</span>
+                <span class="domain-max-badge">Up to 40 pts</span>
+                <span class="chevron-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="domain-body" id="domain-content-6" role="region" aria-labelledby="domain-header-6">
+              <div class="domain-body-inner">
+                <div class="domain-tasks-grid">
+                  <div class="task-row">
+                    <span class="task-title">Approved Marketing Idea</span>
+                    <span class="task-points base-pts">15 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Executing an Approved Marketing Idea</span>
+                    <span class="task-points base-pts">20 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Reel Editing</span>
+                    <span class="task-points high-pts">30 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Reel Concept / Script</span>
+                    <span class="task-points base-pts">20 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Reel Shooting / Acting / Voice-Over</span>
+                    <span class="task-points high-pts">30 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <div class="task-info">
+                      <span class="task-title">Event Teaser</span>
+                      <span class="high-impact-tag">HIGH IMPACT</span>
+                    </div>
+                    <span class="task-points high-pts">40 Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 07 — PUBLIC RELATIONS -->
+          <article class="domain-card" data-domain="7" data-category="editorial">
+            <button class="domain-header" aria-expanded="false" aria-controls="domain-content-7" id="domain-header-7">
+              <div class="domain-header-left">
+                <div class="domain-num">07</div>
+                <div class="domain-meta-block">
+                  <h4 class="domain-title">PUBLIC RELATIONS</h4>
+                  <p class="domain-teaser">“Guest Outreach • Corporate Sponsorship • Partnerships”</p>
+                </div>
+              </div>
+              <div class="domain-header-right">
+                <span class="domain-task-count">5 Tasks</span>
+                <span class="domain-max-badge pinnacle-accent">Up to 60 pts</span>
+                <span class="chevron-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="domain-body" id="domain-content-7" role="region" aria-labelledby="domain-header-7">
+              <div class="domain-body-inner">
+                <div class="domain-tasks-grid">
+                  <div class="task-row">
+                    <span class="task-title">Chief Guest / Speaker Lead</span>
+                    <span class="task-points base-pts">20 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Confirming a Guest / Speaker</span>
+                    <span class="task-points high-pts">40 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Funding / Sponsorship Lead</span>
+                    <span class="task-points base-pts">30 Points</span>
+                  </div>
+                  <div class="task-row highlight-tier-peak">
+                    <div class="task-info">
+                      <span class="task-title">Securing Funding / Sponsorship</span>
+                      <span class="pinnacle-tag">PINNACLE IMPACT</span>
+                    </div>
+                    <span class="task-points pinnacle-pts">60 Points</span>
+                  </div>
+                  <div class="task-row highlight-tier-peak">
+                    <div class="task-info">
+                      <span class="task-title">Partnership / Collaboration</span>
+                      <span class="pinnacle-tag">STRATEGIC ALLIANCE</span>
+                    </div>
+                    <span class="task-points pinnacle-pts">50 Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 08 — EDITORIAL -->
+          <article class="domain-card" data-domain="8" data-category="editorial">
+            <button class="domain-header" aria-expanded="false" aria-controls="domain-content-8" id="domain-header-8">
+              <div class="domain-header-left">
+                <div class="domain-num">08</div>
+                <div class="domain-meta-block">
+                  <h4 class="domain-title">EDITORIAL</h4>
+                  <p class="domain-teaser">“Writing • Scriptwriting • Articles &amp; Official Comms”</p>
+                </div>
+              </div>
+              <div class="domain-header-right">
+                <span class="domain-task-count">11 Tasks</span>
+                <span class="domain-max-badge">Up to 40 pts</span>
+                <span class="chevron-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="domain-body" id="domain-content-8" role="region" aria-labelledby="domain-header-8">
+              <div class="domain-body-inner">
+                <div class="domain-tasks-grid two-column-editorial">
+                  <div class="task-row">
+                    <span class="task-title">WhatsApp Message Draft</span>
+                    <span class="task-points base-pts">10 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Caption Writing</span>
+                    <span class="task-points base-pts">10 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Invitation Content</span>
+                    <span class="task-points base-pts">15 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Emcee Script</span>
+                    <span class="task-points high-pts">30 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Welcome Address / Vote of Thanks Script</span>
+                    <span class="task-points base-pts">20 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <div class="task-info">
+                      <span class="task-title">Newsletter / Magazine Article</span>
+                      <span class="high-impact-tag">MAJOR FEATURE</span>
+                    </div>
+                    <span class="task-points high-pts">40 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Website / LinkedIn Content</span>
+                    <span class="task-points high-pts">30 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Official Email Draft</span>
+                    <span class="task-points base-pts">20 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Interview Questionnaire</span>
+                    <span class="task-points base-pts">20 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Conducting an Interview</span>
+                    <span class="task-points high-pts">25 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Interview / Content Compilation</span>
+                    <span class="task-points high-pts">25 Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 09 — DESIGN -->
+          <article class="domain-card" data-domain="9" data-category="design">
+            <button class="domain-header" aria-expanded="false" aria-controls="domain-content-9" id="domain-header-9">
+              <div class="domain-header-left">
+                <div class="domain-num">09</div>
+                <div class="domain-meta-block">
+                  <h4 class="domain-title">DESIGN</h4>
+                  <p class="domain-teaser">“Visual Identity • Posters • Carousels &amp; Banners”</p>
+                </div>
+              </div>
+              <div class="domain-header-right">
+                <span class="domain-task-count">7 Tasks</span>
+                <span class="domain-max-badge">Up to 30 pts</span>
+                <span class="chevron-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="domain-body" id="domain-content-9" role="region" aria-labelledby="domain-header-9">
+              <div class="domain-body-inner">
+                <div class="domain-tasks-grid two-column-editorial">
+                  <div class="task-row">
+                    <span class="task-title">Poster Design</span>
+                    <span class="task-points base-pts">20 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Carousel Design</span>
+                    <span class="task-points high-pts">25 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Story Design</span>
+                    <span class="task-points base-pts">15 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Invitation Design</span>
+                    <span class="task-points high-pts">25 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Certificate Design</span>
+                    <span class="task-points base-pts">10 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <div class="task-info">
+                      <span class="task-title">Event Banner / Standee Design</span>
+                      <span class="high-impact-tag">LARGE FORMAT</span>
+                    </div>
+                    <span class="task-points high-pts">30 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Presentation / Slide Deck Design</span>
+                    <span class="task-points high-pts">25 Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 10 — SPOTIFY PODCAST / SOCIAL MEDIA -->
+          <article class="domain-card" data-domain="10" data-category="media">
+            <button class="domain-header" aria-expanded="false" aria-controls="domain-content-10" id="domain-header-10">
+              <div class="domain-header-left">
+                <div class="domain-num">10</div>
+                <div class="domain-meta-block">
+                  <h4 class="domain-title">SPOTIFY PODCAST / SOCIAL MEDIA</h4>
+                  <p class="domain-teaser">“Audio Engineering • Hosting • Episode Concept”</p>
+                </div>
+              </div>
+              <div class="domain-header-right">
+                <span class="domain-task-count">6 Tasks</span>
+                <span class="domain-max-badge">Up to 40 pts</span>
+                <span class="chevron-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </div>
+            </button>
+            <div class="domain-body" id="domain-content-10" role="region" aria-labelledby="domain-header-10">
+              <div class="domain-body-inner">
+                <div class="domain-tasks-grid">
+                  <div class="task-row">
+                    <span class="task-title">Episode Concept</span>
+                    <span class="task-points base-pts">15 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Script / Episode Outline</span>
+                    <span class="task-points high-pts">25 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Host / Interviewer</span>
+                    <span class="task-points high-pts">35 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Guest Arrangement</span>
+                    <span class="task-points high-pts">30 Points</span>
+                  </div>
+                  <div class="task-row highlight-high-value">
+                    <span class="task-title">Audio Editing / Mastering</span>
+                    <span class="task-points high-pts">40 Points</span>
+                  </div>
+                  <div class="task-row">
+                    <span class="task-title">Episode Description / Show Notes</span>
+                    <span class="task-points base-pts">15 Points</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /.domains-list -->
+
+        <!-- No Results Fallback -->
+        <div id="no-results-message" class="no-results hidden">
+          <div class="no-results-icon">🔍</div>
+          <h4>No matching tasks found</h4>
+          <p>Try searching for words like "quiz", "reel", "points", "sponsorship", or click a category filter above.</p>
+          <button id="reset-search-btn" class="secondary-btn">Reset Search</button>
+        </div>
+
+        <!-- System Summary Callout Card -->
+        <div class="system-summary-card">
+          <div class="summary-bracket-top"></div>
+          <div class="summary-content">
+            <h4 class="summary-heading">PLAYBOOK SUMMARY &amp; LEADERBOARD DIRECTIVE</h4>
+            <div class="summary-points-grid">
+              <div class="summary-point-item">
+                <span class="item-tag">01 / VALIDATION</span>
+                <p>All contributions must be verified by the respective domain lead or chapter team.</p>
+              </div>
+              <div class="summary-point-item">
+                <span class="item-tag">02 / BONUSES</span>
+                <p>Bonus points are granted for extraordinary impact, high responsibility, and top podium finishes.</p>
+              </div>
+              <div class="summary-point-item">
+                <span class="item-tag">03 / ANNUAL RECOGNITION</span>
+                <p>Points aggregate throughout 2026–27 to determine Year-Wise Leaderboard Champions and win exciting prizes at the end of the year.</p>
+              </div>
+            </div>
+            
+            <div class="summary-motto-strip">
+              <span>EVERY CONTRIBUTION COUNTS.</span>
+              <span class="motto-dot">•</span>
+              <span>EVERY POINT ADDS UP.</span>
+              <span class="motto-dot">•</span>
+              <span>SHOW UP. MAKE AN IMPACT. CLIMB THE RANKS.</span>
+            </div>
+          </div>
+          <div class="summary-bracket-bottom"></div>
+        </div>
+
+        <!-- Page Footer -->
+        <footer class="editorial-page-footer">
+          <span>IIChE AU-SC • 2026–27</span>
+          <span class="center-tag">OFFICIAL POINT SYSTEM • 10 DOMAINS</span>
+          <span>PAGE 03</span>
+        </footer>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- INTERACTIVE POINT SIMULATOR DRAWER / MODAL                                -->
+  <!-- ========================================================================= -->
+  <aside id="calculator-drawer" class="calc-drawer" aria-hidden="true">
+    <div class="drawer-backdrop" id="calc-backdrop"></div>
+    <div class="drawer-panel">
+      <!-- Drawer Header -->
+      <div class="drawer-header">
+        <div class="drawer-title-wrap">
+          <div class="drawer-brand-mini">
+            <img src="assets/iiche-logo.png" alt="IIChE Logo" class="drawer-logo-img" />
+            <span class="drawer-badge">INTERACTIVE SIMULATOR</span>
+          </div>
+          <h3 class="drawer-title">POINT CALCULATOR</h3>
+          <p class="drawer-sub">Select your completed or planned tasks to calculate your total score.</p>
+        </div>
+        <button id="close-calc-btn" class="icon-btn close-drawer-btn" aria-label="Close Calculator">✕</button>
+      </div>
+
+      <!-- Scoreboard Display -->
+      <div class="calc-scoreboard">
+        <div class="score-main">
+          <div class="score-label">PROJECTED SCORE</div>
+          <div class="score-number-row">
+            <span class="score-value" id="calc-total-points">0</span>
+            <span class="score-unit">PTS</span>
+          </div>
+        </div>
+
+        <div class="score-rank-card">
+          <div class="rank-label">ESTIMATED CHAPTER RANK TIER</div>
+          <div class="rank-badge" id="calc-rank-tier">ROOKIE CATALYST</div>
+          <div class="rank-next-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" id="calc-progress-bar" style="width: 0%;"></div>
+            </div>
+            <span class="next-rank-info" id="calc-next-rank-text">Select tasks to level up</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Controls inside Calculator -->
+      <div class="drawer-controls">
+        <button id="calc-clear-all-btn" class="text-btn">Clear All</button>
+        <span class="calc-selected-text"><span id="calc-items-count">0</span> contributions selected</span>
+      </div>
+
+      <!-- Task Checklist Container (Generated dynamically for instant sync) -->
+      <div class="drawer-checklist-scroll" id="calc-checklist-container">
+        <!-- Injected via JavaScript from domain tasks -->
+      </div>
+
+      <!-- Drawer Footer -->
+      <div class="drawer-footer">
+        <button id="calc-apply-btn" class="primary-cta-btn full-width">
+          <span>DONE / CLOSE ESTIMATOR</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Notification Toast for Sound / Copied / Rank Up -->
+  <div id="app-toast" class="toast-notification" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
